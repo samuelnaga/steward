@@ -1,11 +1,17 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+      <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+          <ion-avatar item-start>
+              <img src="assets/imgs/user.jpg" alt="foto {{item.nombre}}">
+            </ion-avatar>
+           {{ item.nombre }}
+      </button>  
+    </ion-list>
 </ion-content>
+
