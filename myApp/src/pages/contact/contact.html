@@ -1,17 +1,23 @@
 <ion-header>
   <ion-navbar>
+    
     <ion-title>
-      Contact
+        <ion-icon name="contact"></ion-icon>
+      {{username}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content><br/><br/>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <ion-label>Floor</ion-label>
+      <ion-select placeholder="0">
+        <ion-option value="1">1</ion-option>
+        <ion-option value="2">2</ion-option>
+        <ion-option value="3">3</ion-option>
+        <ion-option value="4">4</ion-option>
+      </ion-select>
     </ion-item>
   </ion-list>
 </ion-content>
