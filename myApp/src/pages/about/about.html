@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-      <button ion-item *ngFor="let item of items" (click)="itemSelected(item)">
+      <button ion-item *ngFor="let item of items" (click)="goToOtherPage(item)">
           <ion-avatar item-start>
               <img src="assets/imgs/user.jpg" alt="foto {{item.nombre}}">
             </ion-avatar>
