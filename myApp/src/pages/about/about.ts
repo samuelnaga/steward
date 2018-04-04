@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { UserProvider } from '../../providers/user/user';
 import { UserPage } from '../../pages/user/user';
 
+
 @Component({
   selector: 'page-about',
   templateUrl: 'about.html'
