@@ -8,16 +8,22 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content><br/><br/>
-  <ion-list>
-    <ion-item>
-      <ion-label>Floor</ion-label>
-      <ion-select placeholder="0">
-        <ion-option value="1">1</ion-option>
-        <ion-option value="2">2</ion-option>
-        <ion-option value="3">3</ion-option>
-        <ion-option value="4">4</ion-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+<ion-content padding><br/><br/>
+
+    <ion-list >
+      <ion-item >
+        <ion-label>Floor</ion-label>
+        <ion-select placeholder="0" >
+          <ion-option value="1">1</ion-option>
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="4">4</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button color="azulClaro" block (click)="presentToast()">
+      Save
+    </button>
+  
 </ion-content>
