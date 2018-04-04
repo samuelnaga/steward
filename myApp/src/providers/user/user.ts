@@ -10,10 +10,10 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class UserProvider {
 
-  private url: string = "https://jdsam.ovh/rest/empleado/";
+  private url: string; 
 
   constructor(public http: HttpClient) {
-   
+    this.url = "https://jdsam.ovh/rest/empleado/";
   }
 
 

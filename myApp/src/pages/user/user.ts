@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 
 
 
@@ -11,12 +11,12 @@ export class UserPage {
 
   public nombre: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navParams: NavParams) {
 
     this.nombre = this.navParams.get('nombre');
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {//oninit
     
   }
 
