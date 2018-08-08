@@ -1,0 +1,96 @@
+// http://ionicframework.com/docs/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+ion-navbar {
+    height: 50px;
+}
+
+.title {
+    text-align: center;
+}
+
+.adminButton {
+    float: right;
+}
+
+.profileButton {
+    float: right;
+}
+
+.withBorder {
+    border: 3px;
+    border-color: black;
+}
+
+.ios {
+    .adminButton {
+        margin-top: 13px;
+    }
+}
+
+.md {//android
+    .adminButton {
+        margin-top: 0;
+    }
+
+    .profileButton {
+        margin-top: 0;
+    }
+}
+
+.even {
+    color: color($colors, gris, base);
+}
+
+.odd {
+    color: color($colors, verde, base);
+}
+
+.addButton {
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+#EntityName {
+    margin-top: -10px;
+
+    #btnEdit {
+        padding-top: 50%;
+        font-size: 30px;
+        margin-left: -20px; 
+    }
+
+    input[type="text"] {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+
+    .btnEdition {
+        margin:0;
+    }
+    
+}
+
+.cancelButton {
+    padding-left: 10%;
+    padding-right: 10%;
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    right: 0;
+}

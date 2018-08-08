@@ -1,0 +1,57 @@
+
+<ion-header>
+
+  <ion-navbar color="verde">
+    <button ion-button icon-only clear (click)="goToProfile()" class="profileButton">
+      <ion-icon name="contact" color="dark"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h1 padding>{{userName}}</h1>
+
+  <ion-card>
+
+    <div text-center>
+      <ion-img src="assets/imgs/user.jpg"></ion-img>
+    </div>
+
+    <ion-card-title>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col>Country</ion-col>
+            <ion-col col>City</ion-col>
+          </ion-row>
+        </ion-grid>
+
+    </ion-card-title>
+
+    <ion-card-content>
+
+      <ion-grid>
+
+        <ion-row>
+          <ion-col col>Building</ion-col>
+          <ion-col col>Floor</ion-col>
+          <ion-col col>Workplace</ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <div padding>
+    <button ion-button block color="gris">
+      <ion-icon name="navigate"></ion-icon>
+      &nbsp;
+      Find
+    </button>
+  </div>
+  
+</ion-content>

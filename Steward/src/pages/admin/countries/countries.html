@@ -1,0 +1,38 @@
+
+<ion-header>
+
+  <ion-navbar color="verde">
+    <ion-title >Countries</ion-title>
+    <button ion-button icon-only clear (click)="goToProfile()" class="profileButton">
+        <ion-icon name="contact" color="dark"></ion-icon>
+    </button>
+    <button ion-button color="dark" small outline class="adminButton" (click)="goToUser()"> User </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-searchbar (input)="searchCountries($event)"></ion-searchbar>
+  <br/>
+  <h5 padding [hidden]="countries.length">There are no countries created yet</h5>
+  <ion-list>
+    <ion-item-divider [hidden]="true"></ion-item-divider>
+    <button ion-item *ngFor="let country of countries; let odd=odd; let even=even;" (click)="goToCountry(country)" >
+      <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
+      {{country}}
+    </button>  
+    <ion-item-divider [hidden]="true"></ion-item-divider>
+  </ion-list>
+
+  <div class="addButton">
+    <button ion-button block color="gris" (click)="goToNewCountry()">
+      Add new country
+    </button>
+  </div>
+  
+</ion-content>
+  
+  
+
+

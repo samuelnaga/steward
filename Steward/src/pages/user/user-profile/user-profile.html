@@ -1,0 +1,81 @@
+
+<ion-header>
+
+  <ion-navbar color="verde">
+    <ion-title >Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <div id="userNameId">
+    <ion-item padding *ngIf="editMode; else username">
+      <ion-input type="text" value="{{user.nick}}" placeholder="Username"></ion-input>
+    </ion-item>
+    <ng-template #username>
+      <span padding><strong>{{user.nick}}</strong></span>
+    </ng-template>
+  </div>
+  
+  <ion-card>
+
+    <h1 padding text-center> <strong>{{user.nombre}}</strong> </h1>
+
+    <br/>
+
+    <div text-center>
+      <ion-img src="assets/imgs/user.jpg"></ion-img>
+    </div>
+
+    <ion-card-title>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col>Country</ion-col>
+            <ion-col col>City</ion-col>
+          </ion-row>
+        </ion-grid>
+
+    </ion-card-title>
+
+    <ion-card-content>
+
+      <ion-grid>
+
+        <ion-row>
+          <ion-col col>Building</ion-col>
+          <ion-col col>Floor</ion-col>
+          <ion-col col>Workplace</ion-col>
+        </ion-row>
+
+      </ion-grid>
+
+    </ion-card-content>
+
+  </ion-card>
+
+  <br/>
+
+  <div padding> 
+    <button ion-button block color="gris">
+      Register new place
+    </button>
+
+    <br/>
+
+    <button *ngIf="editMode; else editButton" ion-button block color="verde" (click)="setEditMode(false)" >
+      Save
+    </button>
+
+    <ng-template #editButton>
+      <button ion-button block color="verde" (click)="setEditMode(true)" >
+        <ion-icon name="create" ></ion-icon>
+        &nbsp;
+        Edit profile
+      </button>
+    </ng-template>
+  </div>
+
+</ion-content>
