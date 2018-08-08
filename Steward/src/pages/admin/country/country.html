@@ -19,11 +19,11 @@
 
       <ion-col col-10 >
         <ion-card padding>
-          <ion-input type="text" [(ngModel)]="countryName" placeholder="Country name" [disabled]="!countryNameEdit"></ion-input>
+          <ion-input autofocus type="text" [(ngModel)]="countryName" placeholder="Country name" [disabled]="!countryNameEdit"></ion-input>
         </ion-card>
       </ion-col>
 
-      <ion-col col-1 >
+      <ion-col col-1>
         <button id="btnEdit" *ngIf="!countryNameEdit; else elseBlock" ion-button large color="dark" icon-only clear (click)="enableEdition(true)"><ion-icon name="create" color="dark"></ion-icon></button>
         <ng-template #elseBlock>
           <button class="btnEdition" (click)="saveName()" ion-button large color="dark" icon-only clear><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle"></ion-icon></button>
@@ -46,7 +46,7 @@
   </ion-list>
  
   <div class="addButton">
-    <button ion-button block color="gris" (click)="goToNewCity()" [disabled]="countryName=='' || !savedName">
+    <button ion-button block color="gris" (click)="goToNewCity()" [disabled]="!savedName">
       Add new city
     </button>
   </div>

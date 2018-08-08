@@ -1,0 +1,81 @@
+<ion-header>
+
+  <ion-navbar color="verde">
+    <ion-title >Building</ion-title>
+    <button ion-button icon-only clear (click)="goToProfile()" class="profileButton">
+        <ion-icon name="contact" color="dark"></ion-icon>
+    </button>
+    <button ion-button color="dark" small outline class="adminButton" (click)="goToUser()"> User </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid padding id="EntityName">
+    <ion-row>
+
+      <ion-col col-10 >
+        <ion-card padding>
+          <ion-input type="text" autofocus [(ngModel)]="buildingName" placeholder="Building name" [disabled]="!buildingNameEdit"></ion-input>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-1 >
+        <button id="btnEdit" *ngIf="!buildingNameEdit; else elseBlock" ion-button large color="dark" icon-only clear (click)="enableEdition(true)"><ion-icon name="create" color="dark"></ion-icon></button>
+        <ng-template #elseBlock>
+          <button class="btnEdition" (click)="saveName()" ion-button large color="dark" icon-only clear><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle"></ion-icon></button>
+          <button class="btnEdition" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
+        </ng-template>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+   
+  <ion-row>
+    <ion-col col-6>
+      <h3>Floors</h3>
+    </ion-col>
+    <ion-col col-4>
+      <p [hidden]="floors.length == 0" class="titleRight">Nº Workplaces</p>
+    </ion-col>
+  </ion-row>
+  
+  <h5 [hidden]="floors.length">There are no floors created yet</h5>
+
+  <ion-row *ngFor="let floor of floors; let odd=odd; let even=even; let i = index" class="forow">
+    <ion-col col-6>
+      <ion-list>
+        <ion-item-divider [hidden]="true"></ion-item-divider>
+        <button ion-item (click)="goToFloor(i + 1)" >
+          <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
+          {{floor}}
+        </button>
+        <ion-item-divider [hidden]="true"></ion-item-divider>  
+      </ion-list>
+    </ion-col>
+    <ion-col col-4>
+      <ion-input class="inputN" type="number"></ion-input>
+    </ion-col>
+    <ion-col col-2>
+      <button ion-button color="dark" (click)="createWorkplaces()" class="createN">
+        Create
+      </button>
+    </ion-col>
+  </ion-row>
+    
+
+ 
+  <div class="addButton">
+    <button ion-button block color="gris" (click)="newFloor()" [disabled]="!savedName">
+      Add new floor
+    </button>
+  </div>
+
+  <div *ngIf="newBuilding" position="bottom" class="cancelButton">
+    <button ion-button block color="verde" (click)="back()">Cancel</button>
+  </div>
+
+</ion-content>
+

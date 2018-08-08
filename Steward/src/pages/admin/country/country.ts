@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CityPage } from '../city/city';
-
+import { UserProfilePage } from '../../user/user-profile/user-profile'
+import { UserListPage } from '../../user/user-list/user-list'
 
 @Component({
   selector: 'page-country',
@@ -33,6 +34,10 @@ export class CountryPage {
     }
   }
 
+  ionViewWillLeave() {
+    console.log("Looks like I'm about to leave :(");
+  }
+
   enableEdition(value) {
     this.countryNameEdit = value;
     if(!value) {
@@ -41,11 +46,20 @@ export class CountryPage {
   }
 
   saveName() {
-    this.finalCountryName = this.countryName;
-    this.countryNameEdit = false;
-    this.savedName = true;
+    if (this.countryName != "") {
+      this.finalCountryName = this.countryName;
+      this.countryNameEdit = false;
+      this.savedName = true;
+      if (this.newCountry)  {
+        this.createCountry();
+        this.newCountry = false;
+      }
+    }
   }
 
+  createCountry() {
+    
+  }
 
   goToCity(cityName) {
     this.navCtrl.push(CityPage, cityName);
@@ -55,4 +69,15 @@ export class CountryPage {
     this.navCtrl.push(CityPage, "");
   }
 
+  back() {
+    this.navCtrl.pop();
+  }
+
+  goToProfile() {
+    this.navCtrl.push(UserProfilePage/*, this.user*/);
+  }
+
+  goToUser() {
+    this.navCtrl.push(UserListPage);
+  }
 }

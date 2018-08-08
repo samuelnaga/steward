@@ -1,0 +1,36 @@
+page-building {
+
+    .titleRight{    
+        margin: 0;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .inputN {
+        border: solid;
+        border-radius: 5px;
+        border-width: 1px;
+        padding-left: 5px;
+        margin-left: 1em;
+        width: 70%;
+        font-size: 1.2em;
+    }
+
+    .forow {
+        margin-bottom: -30px;
+    }
+
+    .createN {
+        position: relative;
+        margin: auto;
+        margin-left: -20px;
+        padding: 5px;
+        background-color: color($colors, verde, base);
+        font-size: 1.1em;
+        color: color($colors, dark);
+    }
+
+    .addButton {
+        margin-top: 1.6em;
+    }
+}

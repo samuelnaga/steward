@@ -3,7 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { UserProfilePage } from '../../user/user-profile/user-profile'
 import { CountryPage } from '../country/country';
-import { CountryProvider } from '../../../providers/country/country';
+import { UserListPage } from '../../user/user-list/user-list'
+//import { CountryProvider } from '../../../providers/country/country';
 
 @Component({
   selector: 'page-countries',
@@ -17,7 +18,7 @@ export class CountriesPage {
     nick: "Nombre de Usuario"
   }; //yo, user actual de la sesion
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _provider: CountryProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.countries = ["Spain", "France", "Portugal", "England", "Belgium"];
   }
 
@@ -38,6 +39,10 @@ export class CountriesPage {
 
   goToProfile() {
     this.navCtrl.push(UserProfilePage, this.user);
+  }
+
+  goToUser() {
+    this.navCtrl.push(UserListPage);
   }
 
   goToCountry(countryName) {

@@ -24,6 +24,8 @@ import { UserProfilePage } from '../pages/user/user-profile/user-profile';
 import { CountriesPage } from '../pages/admin/countries/countries';
 import { CountryPage } from '../pages/admin/country/country';
 import { CityPage } from '../pages/admin/city/city';
+import { BuildingPage } from '../pages/admin/building/building';
+import { FloorPage } from '../pages/admin/floor/floor';
   //
 
 /////
@@ -39,7 +41,9 @@ import { CityPage } from '../pages/admin/city/city';
     UserProfilePage,
     CountriesPage,
     CountryPage,
-    CityPage
+    CityPage,
+    BuildingPage,
+    FloorPage
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,9 @@ import { CityPage } from '../pages/admin/city/city';
     UserProfilePage,
     CountriesPage,
     CountryPage,
-    CityPage
+    CityPage,
+    BuildingPage,
+    FloorPage
   ],
   providers: [
     StatusBar,

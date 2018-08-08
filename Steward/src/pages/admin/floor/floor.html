@@ -1,0 +1,34 @@
+<ion-header>
+
+    <ion-navbar color="verde">
+      <ion-title >Floor</ion-title>
+      <button ion-button icon-only clear (click)="goToProfile()" class="profileButton">
+          <ion-icon name="contact" color="dark"></ion-icon>
+      </button>
+      <button ion-button color="dark" small outline class="adminButton" (click)="goToUser()"> User </button>
+    </ion-navbar>
+  
+  </ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid padding id="EntityName">
+    <ion-row>
+      <ion-col col-10 >
+        <ion-card padding>
+          <ion-input type="text" autofocus [(ngModel)]="floorName" placeholder="Floor name" [disabled]="!floorNameEdit"></ion-input>
+        </ion-card>
+      </ion-col>
+
+      <ion-col col-1 >
+        <button id="btnEdit" *ngIf="!floorNameEdit; else elseBlock" ion-button large color="dark" icon-only clear (click)="enableEdition(true)"><ion-icon name="create" color="dark"></ion-icon></button>
+        <ng-template #elseBlock>
+          <button class="btnEdition" (click)="saveName()" ion-button large color="dark" icon-only clear><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle"></ion-icon></button>
+          <button class="btnEdition" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

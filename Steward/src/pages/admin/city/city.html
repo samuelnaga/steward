@@ -18,7 +18,7 @@
 
       <ion-col col-10 >
         <ion-card padding>
-          <ion-input type="text" [(ngModel)]="cityName" placeholder="City name" [disabled]="!cityNameEdit"></ion-input>
+          <ion-input type="text" autofocus [(ngModel)]="cityName" placeholder="City name" [disabled]="!cityNameEdit"></ion-input>
         </ion-card>
       </ion-col>
 
@@ -45,9 +45,13 @@
   </ion-list>
  
   <div class="addButton">
-    <button ion-button block color="gris" (click)="goToNewBuilding()">
+    <button ion-button block color="gris" (click)="goToNewBuilding()" [disabled]="!savedName">
       Add new building
     </button>
+  </div>
+
+  <div *ngIf="newCity" position="bottom" class="cancelButton">
+    <button ion-button block color="verde" (click)="back()">Cancel</button>
   </div>
 
 </ion-content>
