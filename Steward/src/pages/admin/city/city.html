@@ -26,7 +26,7 @@
         <button id="btnEdit" *ngIf="!cityNameEdit; else elseBlock" ion-button large color="dark" icon-only clear (click)="enableEdition(true)"><ion-icon name="create" color="dark"></ion-icon></button>
         <ng-template #elseBlock>
           <button class="btnEdition" (click)="saveName()" ion-button large color="dark" icon-only clear><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle"></ion-icon></button>
-          <button class="btnEdition" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
+          <button class="btnEdition" id="algo" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
         </ng-template>
       </ion-col>
 

@@ -5,6 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpClientModule } from '@angular/common/http';
+/////PLUGINS
+import { QRScanner } from '@ionic-native/qr-scanner';
+import { ToastServiceProvider } from '../providers/toast-service/toast-service';
+/////
 
 ///// PROVIDERS
 import { UserProvider } from '../providers/user/user';
@@ -66,9 +70,11 @@ import { FloorPage } from '../pages/admin/floor/floor';
   providers: [
     StatusBar,
     SplashScreen,
+    QRScanner,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
-    CountryProvider
+    CountryProvider,
+    ToastServiceProvider
   ]
 })
 export class AppModule {}

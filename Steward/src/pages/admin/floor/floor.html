@@ -25,10 +25,34 @@
         <button id="btnEdit" *ngIf="!floorNameEdit; else elseBlock" ion-button large color="dark" icon-only clear (click)="enableEdition(true)"><ion-icon name="create" color="dark"></ion-icon></button>
         <ng-template #elseBlock>
           <button class="btnEdition" (click)="saveName()" ion-button large color="dark" icon-only clear><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle"></ion-icon></button>
-          <button class="btnEdition" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
+          <button class="btnEdition" id="algo" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
         </ng-template>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+
+  <h3>Workplaces</h3>
+  <h5 [hidden]="workplaces.length">There are no workplaces created yet</h5>
+  <ion-list>
+    <ion-item-divider [hidden]="true"></ion-item-divider>
+    <button ion-item *ngFor="let workplace of workplaces; let odd=odd; let even=even;" (click)="scan()" >
+      <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
+      {{workplace}}
+      <ion-icon name="qr-scanner" item-end></ion-icon>
+    </button>
+    <ion-item-divider [hidden]="true"></ion-item-divider>  
+  </ion-list>
+
+  <div class="addButton">
+    <button ion-button block color="gris" (click)="createWorkplace()" [disabled]="!savedName">
+      Add new workplace
+    </button>
+  </div>
+  <div class="addButton">
+      <button ion-button block color="gris" (click)="proba()" [disabled]="!savedName">
+        adsf
+      </button>
+    </div>
 
 </ion-content>
