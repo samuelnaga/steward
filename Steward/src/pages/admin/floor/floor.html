@@ -39,7 +39,7 @@
     <button ion-item *ngFor="let workplace of workplaces; let odd=odd; let even=even;" (click)="scan()" >
       <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
       {{workplace}}
-      <ion-icon name="qr-scanner" item-end></ion-icon>
+      <span item-end>Scan <ion-icon name="qr-scanner" item-end></ion-icon></span>
     </button>
     <ion-item-divider [hidden]="true"></ion-item-divider>  
   </ion-list>
@@ -49,10 +49,5 @@
       Add new workplace
     </button>
   </div>
-  <div class="addButton">
-      <button ion-button block color="gris" (click)="proba()" [disabled]="!savedName">
-        adsf
-      </button>
-    </div>
-
+ 
 </ion-content>

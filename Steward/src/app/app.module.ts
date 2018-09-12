@@ -7,12 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { HttpClientModule } from '@angular/common/http';
 /////PLUGINS
 import { QRScanner } from '@ionic-native/qr-scanner';
-import { ToastServiceProvider } from '../providers/toast-service/toast-service';
+import { BackgroundMode } from '@ionic-native/background-mode'
 /////
 
 ///// PROVIDERS
 import { UserProvider } from '../providers/user/user';
 import { CountryProvider } from '../providers/country/country';
+import { ToastServiceProvider } from '../providers/toast-service/toast-service';
+import { BackgroundModeProvider } from '../providers/background-mode/background-mode';
 /////
 
 import { MyApp } from './app.component';
@@ -30,8 +32,9 @@ import { CountryPage } from '../pages/admin/country/country';
 import { CityPage } from '../pages/admin/city/city';
 import { BuildingPage } from '../pages/admin/building/building';
 import { FloorPage } from '../pages/admin/floor/floor';
-  //
+import { CityProvider } from '../providers/city/city';
 
+  //
 /////
 
 
@@ -71,10 +74,13 @@ import { FloorPage } from '../pages/admin/floor/floor';
     StatusBar,
     SplashScreen,
     QRScanner,
+    BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     CountryProvider,
-    ToastServiceProvider
+    ToastServiceProvider,
+    BackgroundModeProvider,
+    CityProvider
   ]
 })
 export class AppModule {}
