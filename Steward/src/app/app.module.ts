@@ -33,6 +33,7 @@ import { CityPage } from '../pages/admin/city/city';
 import { BuildingPage } from '../pages/admin/building/building';
 import { FloorPage } from '../pages/admin/floor/floor';
 import { CityProvider } from '../providers/city/city';
+import { GlobalProvider } from '../providers/global/global';
 
   //
 /////
@@ -80,7 +81,8 @@ import { CityProvider } from '../providers/city/city';
     CountryProvider,
     ToastServiceProvider,
     BackgroundModeProvider,
-    CityProvider
+    CityProvider,
+    GlobalProvider
   ]
 })
 export class AppModule {}

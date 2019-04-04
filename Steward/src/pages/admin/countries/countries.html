@@ -16,20 +16,50 @@
   <ion-searchbar (input)="searchCountries($event)"></ion-searchbar>
   <br/>
   <h5 padding [hidden]="countries.length">There are no countries created yet</h5>
-  <ion-list>
+  <ion-list class="lista">
     <ion-item-divider [hidden]="true"></ion-item-divider>
-    <button ion-item *ngFor="let country of countries; let odd=odd; let even=even;" (click)="goToCountry(country)" >
-      <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
-      {{country}}
+    <button ion-item [attr.detail-none]="deleting ? true : null" *ngFor="let country of countries; let odd=odd; let even=even; let i = index" (click)="goToCountry(country, i)" >
+      <ion-icon *ngIf="deleting == false; else deletingIcons" [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
+      <ng-template #deletingIcons>
+        <ion-icon *ngIf="checked[i] == false; else checkedIcon" [ngClass]="{ odd: odd, even: even }" name="square-outline" item-start></ion-icon>
+        <ng-template #checkedIcon>
+            <ion-icon [ngClass]="{ odd: odd, even: even }" name="checkbox-outline" item-start></ion-icon>
+        </ng-template>
+      </ng-template>
+      {{country.name}}
     </button>  
     <ion-item-divider [hidden]="true"></ion-item-divider>
   </ion-list>
 
-  <div class="addButton">
-    <button ion-button block color="gris" (click)="goToNewCountry()">
-      Add new country
-    </button>
+  <div *ngIf="deleting == false; else deletingButtons" class="buttonsBot">
+    <div class="addButton" >
+      <button ion-button block color="gris" id="topbutton" (click)="goToNewCountry()">
+        Add new country
+      </button>
+    </div>
+  
+    <div class="addButton">
+      <button ion-button block color="danger" (click)="deleteCountries(true)">
+        Delete countries
+      </button>
+    </div>
   </div>
+
+  <ng-template #deletingButtons>
+    <div class="buttonsBot">
+      <div class="addButton" >
+          <button ion-button block color="danger" (click)="deleteModal()">
+              Delete selected countries
+          </button>
+        </div>
+      
+        <div class="addButton">
+          <button ion-button block color="gris" (click)="deleteCountries(false)">
+              Cancel
+          </button>
+        </div>
+    </div>
+  </ng-template>
   
 </ion-content>
   

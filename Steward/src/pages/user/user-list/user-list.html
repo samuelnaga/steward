@@ -5,7 +5,7 @@
     <button ion-button icon-only clear (click)="goToProfile()" class="profileButton">
         <ion-icon name="contact" color="dark"></ion-icon>
     </button>
-    <button ion-button color="dark" small outline class="adminButton" (click)="goToAdmin()"> Admin </button>
+    <button *ngIf="rolNow == 1" ion-button color="dark" small outline class="adminButton" (click)="goToAdmin()"> Admin </button>
   </ion-navbar>
 
 </ion-header>
@@ -20,10 +20,10 @@
     <ion-item-divider [hidden]="true"></ion-item-divider>
     <button ion-item *ngFor="let user of users" (click)="goToUser(user)">
       <ion-avatar item-start>
-        <img src="assets/imgs/user.jpg" alt="Imagen de {{user.nombre}}">
+        <img src="assets/imgs/user.jpg" alt="Imagen de {{user.name}}">
       </ion-avatar>
-      <h2>{{ user.nombre }}</h2>
-      <h3>{{user.nick}}</h3>
+      <h2>{{ user.name }}</h2>
+      <h3>{{user.username}}</h3>
     </button>  
     <ion-item-divider [hidden]="true"></ion-item-divider>
   </ion-list>

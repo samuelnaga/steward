@@ -11,47 +11,45 @@
 
 
 <ion-content padding>
-  <h1 padding>{{userName}}</h1>
-
-  <ion-card>
-
-    <div text-center>
-      <ion-img src="assets/imgs/user.jpg"></ion-img>
+    <div id="userNameId">
+        <span padding><strong>{{user.username}}</strong></span>
     </div>
 
-    <ion-card-title>
+    <ion-card>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col col>Country</ion-col>
-            <ion-col col>City</ion-col>
-          </ion-row>
-        </ion-grid>
+        <h1 padding text-center> <strong>{{user.name}}</strong> </h1>
+    
+        <div text-center>
+          <ion-img src="assets/imgs/user.jpg"></ion-img>
+        </div>
+    
+        <ion-card-title>
+            <ion-grid>
+              <ion-row>
+                <ion-col col>&nbsp; &nbsp;<ion-icon name="pin"></ion-icon> &nbsp;{{location.country}}</ion-col>
+                <ion-col col>{{location.city}}</ion-col>
+              </ion-row>
+              <br/>
+              <ion-row align-items-center>
+                <ion-col ></ion-col>
+                <ion-col > {{location.building}}</ion-col>
+                <ion-col ></ion-col>
+              </ion-row>
+              <br/>
+              <ion-row>
+                  <ion-col col> &nbsp; &nbsp; Floor {{location.floor}}</ion-col>
+                  <ion-col col>Workplace {{location.workplace}}</ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card-title>
+      </ion-card>
 
-    </ion-card-title>
-
-    <ion-card-content>
-
-      <ion-grid>
-
-        <ion-row>
-          <ion-col col>Building</ion-col>
-          <ion-col col>Floor</ion-col>
-          <ion-col col>Workplace</ion-col>
-        </ion-row>
-
-      </ion-grid>
-
-    </ion-card-content>
-
-  </ion-card>
-
-  <div padding>
+  <!-- <div padding>
     <button ion-button block color="gris">
       <ion-icon name="navigate"></ion-icon>
       &nbsp;
       Find
     </button>
-  </div>
+  </div> -->
   
 </ion-content>

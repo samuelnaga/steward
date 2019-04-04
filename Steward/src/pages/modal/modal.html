@@ -1,0 +1,22 @@
+
+<ion-header>
+
+  <ion-navbar color="gris">
+    <ion-title >Log out</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <br/>
+    <div color="verde">
+      <h4 class="title">{{message}}</h4>
+    </div>
+    <br/>
+  <ion-buttons>
+    <button ion-button (click) = "closeModal(1)" color="verde" block>Accept</button>
+    <br/>
+    <button ion-button (click) = "closeModal(0)" color="gris" block>Close</button>
+  </ion-buttons>
+</ion-content>

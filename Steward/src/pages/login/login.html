@@ -10,24 +10,22 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <form [formGroup]="user" (ngSubmit)="login()">
 
-    <ion-item>
-      <ion-label>Username</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
-  
-  </ion-list>
-  
-  <div padding>
-    <button ion-button block color="gris" (click)="login()">
-      Sign In
-    </button>
-  </div>
+      <ion-item>
+        <ion-label>Username</ion-label>
+        <ion-input type="text" class="form-control" formControlName="username" required></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Password</ion-label>
+        <ion-input type="password" class="form-control" formControlName="password" required></ion-input>
+      </ion-item>
 
+    <div padding>
+      <button ion-button block type="submit" color="gris" [disabled]="!user.valid">
+        Sign In
+      </button>
+    </div>
+  </form>
 </ion-content>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { UserProvider } from '../../../providers/user/user';
 
 import { UserViewPage } from '../user-view/user-view';
 import { UserProfilePage } from '../user-profile/user-profile';
 import { CountriesPage } from '../../admin/countries/countries';
+import { GlobalProvider } from '../../../providers/global/global';
 
 @Component({
   selector: 'page-user-list',
@@ -13,24 +14,31 @@ import { CountriesPage } from '../../admin/countries/countries';
 export class UserListPage {
 
   public users;
+  public rolNow = 0;
+  private currentUser;
+  public hidden;
 
-  public user = {
-    nombre: "Nombre completo",
-    nick: "Nombre de Usuario"
-  }; //yo, user actual de la sesion
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
+              public _userProvider: UserProvider,
+              private _globalP: GlobalProvider) {
 
-  constructor(public navCtrl: NavController,
-              //public navParams: NavParams,
-              public _userProvider: UserProvider) {
-
+    this.currentUser = navParams.data;
     this.users = [];
   }
 
   ionViewDidLoad() {
+    this.rolNow = this._globalP.getRolSession();
     this.getUsers();
+    this.hidden = true;
+  }
+
+  ionViewWillEnter() {
+    this.viewCtrl.showBackButton(false);
+    this.hidden = false;
   }
 
   getUsers() {
+    //this.users = this._userProvider.getUsers();
     this._userProvider.getUsers().subscribe(
       res => {
         this.users = res;
@@ -46,7 +54,7 @@ export class UserListPage {
     
     if (val && val.trim() != '') {
       this.users = this.users.filter((user) => {
-        return (user.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (user.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
     }
     else {
@@ -59,7 +67,7 @@ export class UserListPage {
   }
 
   goToProfile() {
-    this.navCtrl.push(UserProfilePage, this.user);
+    this.navCtrl.push(UserProfilePage, this.currentUser);
   }
 
   goToAdmin() {
