@@ -16,4 +16,12 @@ export class CountryProvider {
   getCitiesFromCountry(id) {
     return this.http.get(this.url + id + "/cities");
   }
+
+  deleteCountry(id) {
+    this.http.delete(this.url + id);
+  }
+
+  createCountry(countryname: String) {
+    return this.http.post(this.url, {name: countryname}, {headers: {'Content-Type': 'application/json'}});
+  }
 }

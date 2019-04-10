@@ -39,13 +39,12 @@ export class CountriesPage {
   ionViewWillEnter() {
     this.viewCtrl.showBackButton(false);
     this.hidden = false;
-  }
-
-  ionViewDidLoad() {
+    console.log("ionViewWill");
+    this.countries = [];
+    this.checked = [];
     this._provider.getCountries()
       .subscribe(response => {
         for (let i in response) {
-          console.log(response[i].name);
           this.countries.push(response[i]);
           this.checked.push(false);
         }
@@ -55,6 +54,11 @@ export class CountriesPage {
         console.log(error);
         //this.errorMsg = error;
     });
+  }
+
+  ionViewDidLoad() {
+    console.log("ionViewDid");
+    
     this.hidden = true;
   }
 
@@ -62,7 +66,7 @@ export class CountriesPage {
     const val = event.target.value;
     if (val && val.trim() != '') {
       this.countries = this.countriesBackUp.filter((item) => {
-        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
     }
     else {
@@ -99,41 +103,76 @@ export class CountriesPage {
   }
 
   deleteCountry(countryID) {
-    // this._provider.deleteCountry(countryID).subscribe(
-    //   response => {
-    //     this.ionViewDidLoad();
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   });
-    
+    //this._provider.deleteCountry(countryID);
+    //this.ionViewDidLoad();
   }
 
-  presentConfirm(country) {
-    let alert = this.alertCtrl.create({
-      title: 'Deleting ' + country.name,
-      message: 'Do you want to delete this country?',
-      buttons: [  
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Delete',
-          handler: () => {
-            console.log('Deleting ' + country.name);
-            this.deleteCountry(country.id);
-          }
+  presentConfirm() {
+    let message1: string;
+    console.log(this.checked);
+    var u = 0;
+    var hay = 0;
+    for(var j = 0; j < this.checked.length; j++) {
+      if(this.checked[j]) {
+        hay++;
+        if(u == 0) {
+          message1 = this.countries[j].name;
+          u++;
         }
-      ]
-    });
-    alert.present();
+        else
+          message1 += ", " + this.countries[j].name; 
+      }
+    }
+
+    if(hay) {
+      let alert = this.alertCtrl.create({
+        title: 'Do you really want to delete this countries?',
+        message: message1,
+        buttons: [  
+          {
+            text: 'Cancel',
+            role: 'cancel',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          },
+          {
+            text: 'Delete',
+            handler: () => {
+              var x = 0;
+              var again = true;
+              while(again) {
+                again = false;
+                for(var j = 0; j < this.checked.length; j++) {
+                  if(this.checked[j]) {
+                    //this.deleteCountry(this.countries[j].id);
+                    this.countries.splice(j, 1);
+                    this.checked.splice(j, 1);
+                    again = true;
+                  }
+                }
+              }
+
+              this.deleting = false;
+            }
+          }
+        ]
+      });
+      alert.present();
+    }
+    
   }
 
   deleteCountries(booleano) {
     this.deleting = booleano;
+
+    if(!booleano)
+      this.clearChecks();
+  }
+
+  clearChecks() {
+    for(var i = 0; i < this.checked.length; i++) {
+      this.checked[i] = false;
+    }
   }
 }

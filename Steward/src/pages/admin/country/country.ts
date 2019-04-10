@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { CityPage } from '../city/city';
 import { UserProfilePage } from '../../user/user-profile/user-profile'
 import { UserListPage } from '../../user/user-list/user-list'
+import { CountryProvider } from '../../../providers/country/country';
 
 @Component({
   selector: 'page-country',
@@ -19,7 +20,7 @@ export class CountryPage {
 
   public cities: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _countryProv: CountryProvider) {
     this.newCountry = this.navParams.data == "" ? true : false;
     this.countryNameEdit = this.newCountry;
     this.countryName = this.newCountry ?  "" : this.navParams.data;
@@ -58,7 +59,13 @@ export class CountryPage {
   }
 
   createCountry() {
-    
+    this._countryProv.createCountry(this.finalCountryName)
+      .subscribe(response => {
+        console.log(response);
+      },
+      error => {
+        console.log(error);
+    });
   }
 
   goToCity(cityName) {

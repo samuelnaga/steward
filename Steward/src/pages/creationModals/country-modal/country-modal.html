@@ -1,0 +1,59 @@
+
+<ion-header>
+
+    <ion-navbar color="verde">
+      <ion-title >Country</ion-title>
+      <button ion-button icon-only clear (click)="goToProfile()" class="profileButton">
+          <ion-icon name="contact" color="dark"></ion-icon>
+      </button>
+      <button ion-button color="dark" small outline class="adminButton" (click)="goToUser()"> User </button>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+  
+    <ion-grid padding id="EntityName">
+      <ion-row>
+  
+        <ion-col col-10 >
+          <ion-card padding>
+            <ion-input autofocus type="text" [(ngModel)]="countryName" placeholder="Country name" [disabled]="!countryNameEdit"></ion-input>
+          </ion-card>
+        </ion-col>
+  
+        <ion-col col-1>
+          <button id="btnEdit" *ngIf="!countryNameEdit; else elseBlock" ion-button large color="dark" icon-only clear (click)="enableEdition(true)"><ion-icon name="create" color="dark"></ion-icon></button>
+          <ng-template #elseBlock>
+            <button class="btnEdition" (click)="saveName()" ion-button large color="dark" icon-only clear><ion-icon ios="ios-checkmark-circle-outline" md="md-checkmark-circle"></ion-icon></button>
+            <button class="btnEdition" id="algo" (click)="enableEdition(false)" ion-button large color="dark" icon-only clear><ion-icon ios="ios-close-circle-outline" md="md-close-circle"></ion-icon></button>
+          </ng-template>
+        </ion-col>
+  
+      </ion-row>
+    </ion-grid>
+     
+    <h3>Cities</h3>
+    <h5 [hidden]="cities.length">There are no cities created yet</h5>
+    <ion-list>
+      <ion-item-divider [hidden]="true"></ion-item-divider>
+      <button ion-item *ngFor="let city of cities; let odd=odd; let even=even;" (click)="goToCity(city)" >
+        <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
+        {{city}}
+      </button>
+      <ion-item-divider [hidden]="true"></ion-item-divider>  
+    </ion-list>
+   
+    <div class="addButton">
+      <button ion-button block color="gris" (click)="goToNewCity()" [disabled]="!savedName">
+        Add new city
+      </button>
+    </div>
+  
+    <div *ngIf="newCountry" position="bottom" class="cancelButton">
+      <button ion-button block color="verde" (click)="back()">Cancel</button>
+    </div>
+    
+  
+  </ion-content>

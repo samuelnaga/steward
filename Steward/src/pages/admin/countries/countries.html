@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-searchbar (input)="searchCountries($event)"></ion-searchbar>
-  <br/>
+  <br [hidden]="countries.length" />
   <h5 padding [hidden]="countries.length">There are no countries created yet</h5>
   <ion-list class="lista">
     <ion-item-divider [hidden]="true"></ion-item-divider>
@@ -33,13 +33,13 @@
 
   <div *ngIf="deleting == false; else deletingButtons" class="buttonsBot">
     <div class="addButton" >
-      <button ion-button block color="gris" id="topbutton" (click)="goToNewCountry()">
+      <button ion-button block color="verde" id="topbutton" (click)="goToNewCountry()">
         Add new country
       </button>
     </div>
   
     <div class="addButton">
-      <button ion-button block color="danger" (click)="deleteCountries(true)">
+      <button ion-button block color="gris" (click)="deleteCountries(true)">
         Delete countries
       </button>
     </div>
@@ -48,7 +48,7 @@
   <ng-template #deletingButtons>
     <div class="buttonsBot">
       <div class="addButton" >
-          <button ion-button block color="danger" (click)="deleteModal()">
+          <button ion-button block color="danger" (click)="presentConfirm(asdf)">
               Delete selected countries
           </button>
         </div>

@@ -15,6 +15,8 @@ import { UserProvider } from '../providers/user/user';
 import { CountryProvider } from '../providers/country/country';
 import { ToastServiceProvider } from '../providers/toast-service/toast-service';
 import { BackgroundModeProvider } from '../providers/background-mode/background-mode';
+import { GlobalProvider } from '../providers/global/global';
+import { CityProvider } from '../providers/city/city';
 /////
 
 import { MyApp } from './app.component';
@@ -32,9 +34,8 @@ import { CountryPage } from '../pages/admin/country/country';
 import { CityPage } from '../pages/admin/city/city';
 import { BuildingPage } from '../pages/admin/building/building';
 import { FloorPage } from '../pages/admin/floor/floor';
-import { CityProvider } from '../providers/city/city';
-import { GlobalProvider } from '../providers/global/global';
-
+  //Creation Modals
+import { CountryModalPage } from '../pages/creationModals/country-modal/country-modal';
   //
 /////
 
@@ -51,7 +52,8 @@ import { GlobalProvider } from '../providers/global/global';
     CountryPage,
     CityPage,
     BuildingPage,
-    FloorPage
+    FloorPage,
+    CountryModalPage
   ],
   imports: [
     BrowserModule,
@@ -69,7 +71,8 @@ import { GlobalProvider } from '../providers/global/global';
     CountryPage,
     CityPage,
     BuildingPage,
-    FloorPage
+    FloorPage,
+    CountryModalPage
   ],
   providers: [
     StatusBar,
