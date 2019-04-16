@@ -1,16 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-@Injectable()
-export class CityProvider {
 
-  private _url: string;
+@Injectable()
+export class BuildingProvider {
+
+  private url;
 
   constructor(public http: HttpClient) {
-    this._url = "cities/";
+    this.url = "buildings/";
   }
 
-  getBuildings(id) {
-    return this.http.get(this._url + id + "/buildings");
+  getFloors(id) {
+    return this.http.get(this.url + id + "/floors");
   }
 }

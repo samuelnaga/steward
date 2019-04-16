@@ -36,9 +36,9 @@
   <h5 [hidden]="workplaces.length">There are no workplaces created yet</h5>
   <ion-list>
     <ion-item-divider [hidden]="true"></ion-item-divider>
-    <button ion-item *ngFor="let workplace of workplaces; let odd=odd; let even=even;" (click)="scan()" >
+    <button ion-item *ngFor="let workplace of workplaces; let odd=odd; let even=even;" (click)="scanner()" >
       <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
-      {{workplace}}
+      Nº {{workplace.number}}
       <span item-end>Scan <ion-icon name="qr-scanner" item-end></ion-icon></span>
     </button>
     <ion-item-divider [hidden]="true"></ion-item-divider>  

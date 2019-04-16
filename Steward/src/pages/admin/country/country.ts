@@ -15,28 +15,40 @@ export class CountryPage {
   public countryName: String;
   public savedName: boolean;
   private finalCountryName: String;
-
   public newCountry: Boolean;
-
+  private country;
   public cities: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _countryProv: CountryProvider) {
     this.newCountry = this.navParams.data == "" ? true : false;
     this.countryNameEdit = this.newCountry;
-    this.countryName = this.newCountry ?  "" : this.navParams.data;
+    this.countryName = this.newCountry ?  "" : this.navParams.data.name;
     this.savedName = this.newCountry ? false : true;
     this.finalCountryName = this.countryName;
     this.cities = [];
+    this.country = this.navParams.data;
   }
 
-  ionViewDidLoad() {console.log("recibo en country: " + this.navParams.data);
+  ionViewDidLoad() {
     if (!this.newCountry) {//cargar ciudades
-      this.cities = ["Alicante", "SanJuan", "Valencia", "Madrid", "Barcelona"];
+      this._countryProv.getCitiesFromCountry(this.country.id).subscribe(
+        res => {
+          for (let i in res) {
+            this.cities.push(res[i]);
+          }
+          this.cities.sort(function(obj1, obj2) {
+            return obj1.id - obj2.id;
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
     }
   }
 
   ionViewWillLeave() {
-    console.log("Looks like I'm about to leave :(");
+    
   }
 
   enableEdition(value) {

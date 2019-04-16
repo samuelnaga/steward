@@ -6,8 +6,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { HttpClientModule } from '@angular/common/http';
 /////PLUGINS
-import { QRScanner } from '@ionic-native/qr-scanner';
+//import { QRScanner } from '@ionic-native/qr-scanner';
 import { BackgroundMode } from '@ionic-native/background-mode'
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 /////
 
 ///// PROVIDERS
@@ -36,6 +37,9 @@ import { BuildingPage } from '../pages/admin/building/building';
 import { FloorPage } from '../pages/admin/floor/floor';
   //Creation Modals
 import { CountryModalPage } from '../pages/creationModals/country-modal/country-modal';
+import { BuildingProvider } from '../providers/building/building';
+import { FloorProvider } from '../providers/floor/floor';
+import { WorkplaceProvider } from '../providers/workplace/workplace';
   //
 /////
 
@@ -77,7 +81,7 @@ import { CountryModalPage } from '../pages/creationModals/country-modal/country-
   providers: [
     StatusBar,
     SplashScreen,
-    QRScanner,
+    BarcodeScanner,
     BackgroundMode,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
@@ -85,7 +89,10 @@ import { CountryModalPage } from '../pages/creationModals/country-modal/country-
     ToastServiceProvider,
     BackgroundModeProvider,
     CityProvider,
-    GlobalProvider
+    GlobalProvider,
+    BuildingProvider,
+    FloorProvider,
+    WorkplaceProvider
   ]
 })
 export class AppModule {}

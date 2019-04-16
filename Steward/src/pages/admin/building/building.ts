@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { FloorPage } from '../floor/floor';
 import { UserProfilePage } from '../../user/user-profile/user-profile'
 import { UserListPage } from '../../user/user-list/user-list'
+import { BuildingProvider } from '../../../providers/building/building';
 
 @Component({
   selector: 'page-building',
@@ -15,21 +16,35 @@ export class BuildingPage {
   public savedName: Boolean;
   private finalBuildingName: String;
   public newBuilding: Boolean;
-
+  private building;
   public floors: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _buildP: BuildingProvider) {
     this.newBuilding = this.navParams.data == "" ? true : false;
     this.buildingNameEdit = this.newBuilding;
-    this.buildingName = this.newBuilding ?  "" : this.navParams.data;
+    this.buildingName = this.newBuilding ?  "" : this.navParams.data.name;
     this.savedName = this.newBuilding ? false : true;
     this.finalBuildingName = this.buildingName;
     this.floors = [];  
+    this.building = this.navParams.data;
   }
 
   ionViewDidLoad() {
     if (this.navParams.data) {
-      this.floors = ["Floor 1", "Floor 2", "Floor 3"];
+      this._buildP.getFloors(this.building.id).subscribe(
+        res => {console.log(res);
+          for (let i in res) {
+            this.floors.push(res[i]);
+          }
+          this.floors.sort(function(obj1, obj2) {
+            return obj1.id - obj2.id;
+          });
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      //this.floors = ["Floor 1", "Floor 2", "Floor 3"];
     }
   }
 
@@ -68,8 +83,8 @@ export class BuildingPage {
   }
 
 
-  goToFloor(floorNumber) {
-    this.navCtrl.push(FloorPage, floorNumber);
+  goToFloor(floor) {
+    this.navCtrl.push(FloorPage, floor);
   }
 
   goToNewFloor() {

@@ -48,9 +48,9 @@
     <ion-col col-6>
       <ion-list>
         <ion-item-divider [hidden]="true"></ion-item-divider>
-        <button ion-item (click)="goToFloor(i + 1)" >
+        <button ion-item (click)="goToFloor(floor)" >
           <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
-          {{floor}}
+          Nº {{floor.number}}
         </button>
         <ion-item-divider [hidden]="true"></ion-item-divider>  
       </ion-list>
