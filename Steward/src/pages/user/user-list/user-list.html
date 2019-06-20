@@ -18,14 +18,19 @@
 
   <ion-list padding-right>
     <ion-item-divider [hidden]="true"></ion-item-divider>
-    <button ion-item *ngFor="let user of users" (click)="goToUser(user)">
+    <button ion-item *ngFor="let user of users; let i = index" (click)="goToUser(user)">
       <ion-avatar item-start>
-        <img src="assets/imgs/user.jpg" alt="Imagen de {{user.name}}">
+        <img src="assets/imgs/user{{i}}.jpg" alt="Imagen de {{user.name}}">
       </ion-avatar>
       <h2>{{ user.name }}</h2>
       <h3>{{user.username}}</h3>
     </button>  
     <ion-item-divider [hidden]="true"></ion-item-divider>
   </ion-list>
+
+  <ion-spinner id="spin" name="bubbles"></ion-spinner>
+
+
+  
 
 </ion-content>

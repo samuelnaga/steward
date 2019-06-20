@@ -20,4 +20,9 @@ export class FloorProvider {
     return this.http.get(this.url + id + "/workplaces");
   }
 
+  setQrCode(id, qr: number)
+  {
+    return this.http.put("workplaces/qrcode/" + id, {qrcode: qr}, {headers: {'Content-Type': 'application/json'}})
+  }
+
 }

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 export class GlobalProvider {
   
   private rolSession = 0;
+  private user;
 
   constructor() {
   }
@@ -12,7 +13,17 @@ export class GlobalProvider {
     return this.rolSession;
   }
 
+  getCurrentUser()
+  {
+    return this.user;
+  }
+
   setRolSession(rol) {
     this.rolSession = rol;
+  }
+
+  setCurrentUser(usr)
+  {
+    this.user = usr;
   }
 }

@@ -2,14 +2,14 @@
 <ion-header>
 
   <ion-navbar color="verde">
-    <ion-title >Login</ion-title>
+    <ion-title >Steward</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+<br/><br/><br/><br/><br/><br/>
   <form [formGroup]="user" (ngSubmit)="login()">
 
       <ion-item>
@@ -21,11 +21,13 @@
         <ion-label>Password</ion-label>
         <ion-input type="password" class="form-control" formControlName="password" required></ion-input>
       </ion-item>
-
+      <br/>
+      <br/><br/>
     <div padding>
       <button ion-button block type="submit" color="gris" [disabled]="!user.valid">
         Sign In
       </button>
     </div>
   </form>
+
 </ion-content>

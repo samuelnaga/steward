@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController  } from 'ionic-angular';
 import { UserProvider } from '../../../providers/user/user';
 
 import { UserViewPage } from '../user-view/user-view';
@@ -30,6 +30,7 @@ export class UserListPage {
     this.rolNow = this._globalP.getRolSession();
     this.getUsers();
     this.hidden = true;
+    console.log("current user: " + this.currentUser.id);
   }
 
   ionViewWillEnter() {
@@ -72,5 +73,9 @@ export class UserListPage {
 
   goToAdmin() {
     this.navCtrl.push(CountriesPage);
+  }
+
+  loadData(evt){
+
   }
 }

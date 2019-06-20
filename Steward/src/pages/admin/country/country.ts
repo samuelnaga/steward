@@ -81,7 +81,11 @@ export class CountryPage {
   }
 
   goToCity(cityName) {
-    this.navCtrl.push(CityPage, cityName);
+    let data = {
+      city: cityName,
+      country: this.country
+    }
+    this.navCtrl.push(CityPage, data);
   }
 
   goToNewCity() {

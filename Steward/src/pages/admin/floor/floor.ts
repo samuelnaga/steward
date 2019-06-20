@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController  } from 'ionic-angular';
 //import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { UserProfilePage } from '../../user/user-profile/user-profile'
 import { UserListPage } from '../../user/user-list/user-list'
@@ -19,17 +19,26 @@ export class FloorPage {
   private finalFloorName: String;
   private floor;
   public workplaces: Array<any>;
+  public country;
+  public city;
+  public building;
+  public toADD;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private barcodeScanner: BarcodeScanner,
-              private _floorP: FloorProvider) {
+              private _floorP: FloorProvider,
+              private alertCtrl: AlertController) {
     this.floorNameEdit = false;
-    this.floorName = "Floor " + this.navParams.data.number;
+    this.floorName = "Floor " + this.navParams.data.floor.number;
     this.savedName = true;
     this.finalFloorName = this.floorName;
     this.workplaces = [];  
-    this.floor = this.navParams.data;
+    this.floor = this.navParams.data.floor;
+    this.country = this.navParams.data.country;
+    this.city = this.navParams.data.city;
+    this.building = this.navParams.data.building;
+    this.toADD = 1;
   }
 
   ionViewDidLoad() {
@@ -49,7 +58,12 @@ export class FloorPage {
   }
 
   createWorkplace() {
-    this.workplaces.push("Workplace " + (this.workplaces.length + 1).toString());
+    for(var i = 0; i < this.toADD; i++) {
+      let newWork = {
+        number: this.workplaces.length + 1
+      }
+      this.workplaces.push(newWork);
+    }
   }
 
   enableEdition(value) {
@@ -80,37 +94,83 @@ export class FloorPage {
     this.navCtrl.push(UserListPage);
   }
 
-  scanner() {
+  presentAlert(number) {
+    let alert = this.alertCtrl.create({
+      title: 'QR Code Registered',
+      message: "Saved in workplace nº " + number ,
+      buttons: [  
+        {
+          text: 'OK',
+          role: 'ok',
+          handler: () => {
+            console.log('ok clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  scanner(workplace) {
+    console.log(workplace);
+
+
+    if(workplace.qrcode) {
+        this.presentWarning(workplace);
+    }
+    else {
+      this.scanning(workplace);
+    }
+
+  }
+
+  scanning(workplace)
+  {
     this.barcodeScanner.scan().then((barcodeData) => {
       console.log('Barcode data', barcodeData);
+      console.log(barcodeData.text)
+      console.log(workplace.id)
+      if(!barcodeData.cancelled)
+      {
+        this._floorP.setQrCode(workplace.id, parseInt(barcodeData.text)).subscribe(
+          res => {
+            console.log(res);
+            this.presentAlert(workplace.number);
+            workplace.qrcode = barcodeData.text;
+          },
+          error => {
+            console.log(error);
+          }
+        );
+      }
+      else console.log("scan canceled");
      }, (err) => {
          console.log('Error', err);
      });
-    // this.qrScanner.prepare()
-    //   .then((status: QRScannerStatus) => {
-    //     if (status.authorized) {
-    //       // camera permission was granted
-
-    //       // start scanning
-    //       let scanSub = this.qrScanner.scan().subscribe((text: string) => {
-    //         console.log('Scanned something', text);
-
-    //         this.qrScanner.hide(); // hide camera preview
-    //         scanSub.unsubscribe(); // stop scanning
-    //       });
-
-    //     } else if (status.denied) {
-    //       this._toast.show('Camera permission was permanently denied.');
-    //       // camera permission was permanently denied
-    //       // you must use QRScanner.openSettings() method to guide the user to the settings page
-    //       // then they can grant the permission from there
-    //     } else {
-    //       this._toast.show('Permission was denied, try it later.');
-    //       // permission was denied, but not permanently. You can ask for permission again at a later time.
-    //     }
-    //   })
-    //   .catch((e: any) => this._toast.show('Error: '+ e));
   }
 
   
+  presentWarning(workplace) {
+    let alert = this.alertCtrl.create({
+      title: 'This workplace has a QR code registered yet',
+      message: "¿Do you really want to overwrite it?" ,
+      buttons: [  
+        {
+          text: 'Cancel',
+          role: 'Cancel',
+          handler: () => {
+            console.log('ok clicked');
+          }
+        },
+        {
+          text: 'Overwrite',
+          handler: () => {
+            this.scanning(workplace);
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
 }

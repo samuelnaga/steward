@@ -12,6 +12,9 @@
 
 
 <ion-content padding>
+    <div class="ruta" ><ion-icon name="pin" color="dark"></ion-icon> &nbsp; {{country.name}} &nbsp;
+      <ion-icon name="arrow-forward" color="dark"></ion-icon> &nbsp; {{city.name}} &nbsp;
+      <ion-icon name="arrow-forward" color="dark"></ion-icon> &nbsp; {{building.name}} </div>
 
   <ion-grid padding id="EntityName">
     <ion-row>
@@ -36,17 +39,32 @@
   <h5 [hidden]="workplaces.length">There are no workplaces created yet</h5>
   <ion-list>
     <ion-item-divider [hidden]="true"></ion-item-divider>
-    <button ion-item *ngFor="let workplace of workplaces; let odd=odd; let even=even;" (click)="scanner()" >
+    <button ion-item *ngFor="let workplace of workplaces; let odd=odd; let even=even;" (click)="scanner(workplace)" >
       <ion-icon [ngClass]="{ odd: odd, even: even }" name="square" item-start></ion-icon>
       Nº {{workplace.number}}
-      <span item-end>Scan <ion-icon name="qr-scanner" item-end></ion-icon></span>
+      <ion-icon *ngIf="workplace.qrcode" ios="ios-checkmark-circle" md="md-checkmark-circle" small color="dark" item-end></ion-icon>
+      <span item-end>Scan <ion-icon name="qr-scanner" item-end></ion-icon> </span>
     </button>
     <ion-item-divider [hidden]="true"></ion-item-divider>  
   </ion-list>
 
+  <ion-row>
+    <ion-col col-2>
+        <ion-input type="number" class="inputN" [value]="toADD" (input)="toADD = $event.target.value"></ion-input>
+    </ion-col>
+    <ion-col col-8>
+      <div class="addButton2">
+        <button ion-button block color="verde" (click)="createWorkplace()" [disabled]="!savedName">
+          Add workplaces
+        </button>
+      </div>
+    </ion-col>
+  </ion-row>
+ 
+
   <div class="addButton">
-    <button ion-button block color="gris" (click)="createWorkplace()" [disabled]="!savedName">
-      Add new workplace
+    <button ion-button block color="gris" [disabled]="!savedName">
+      Delete workplaces
     </button>
   </div>
  

@@ -35,6 +35,7 @@ export class LoginPage {
       if(res) {
         this.loggedUser = res;
         this._globalP.setRolSession(this.loggedUser.rol);
+        this._globalP.setCurrentUser(this.loggedUser);
         this.navCtrl.push(UserListPage, this.loggedUser);
       }
       else {

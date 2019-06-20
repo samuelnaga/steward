@@ -17,16 +17,18 @@ export class CityPage {
   private finalCityName: String;
   public newCity: Boolean;
   private city;
+  public country;
   public buildings: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _cityP: CityProvider) {
-    this.newCity = this.navParams.data == "" ? true : false;
+    this.newCity = this.navParams.data.city == "" ? true : false;
     this.cityNameEdit = this.newCity;
-    this.cityName = this.newCity ?  "" : this.navParams.data.name;
+    this.cityName = this.newCity ?  "" : this.navParams.data.city.name;
     this.savedName = this.newCity ? false : true;
     this.finalCityName = this.cityName;
     this.buildings = [];  
-    this.city = this.navParams.data;
+    this.city = this.navParams.data.city;
+    this.country = this.navParams.data.country;
   }
 
   ionViewDidLoad() {console.log("nuevo: " + this.newCity);
@@ -71,7 +73,12 @@ export class CityPage {
   }
 
   goToBuilding(buildingName) {
-    this.navCtrl.push(BuildingPage, buildingName);
+    let data = {
+      city: this.city,
+      building: buildingName,
+      country: this.country
+    };
+    this.navCtrl.push(BuildingPage, data);
   }
 
   goToNewBuilding() {

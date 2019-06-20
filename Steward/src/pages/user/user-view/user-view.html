@@ -16,30 +16,31 @@
     </div>
 
     <ion-card>
-
+        <br>
         <h1 padding text-center> <strong>{{user.name}}</strong> </h1>
-    
+        <br>
         <div text-center>
-          <ion-img src="assets/imgs/user.jpg"></ion-img>
+          <ion-img src="assets/imgs/user20.jpg"></ion-img>
         </div>
-    
+        <br>
         <ion-card-title>
             <ion-grid>
               <ion-row>
-                <ion-col col>&nbsp; &nbsp;<ion-icon name="pin"></ion-icon> &nbsp;{{location.country}}</ion-col>
-                <ion-col col>{{location.city}}</ion-col>
+                <ion-col col> <ion-icon name="pin"></ion-icon> {{location.country}} &nbsp; <ion-icon name="arrow-forward" color="dark"></ion-icon></ion-col>
+                <ion-col col>{{location.city}} &nbsp; <ion-icon name="arrow-forward" color="dark"></ion-icon></ion-col>
+                <ion-col col>{{location.building}}</ion-col>
               </ion-row>
               <br/>
-              <ion-row align-items-center>
+              <!-- <ion-row align-items-center>
                 <ion-col ></ion-col>
                 <ion-col > {{location.building}}</ion-col>
                 <ion-col ></ion-col>
               </ion-row>
-              <br/>
+              <br/> -->
               <ion-row>
-                  <ion-col col> &nbsp; &nbsp; Floor {{location.floor}}</ion-col>
-                  <ion-col col>Workplace {{location.workplace}}</ion-col>
-                </ion-row>
+                  <ion-col col> &nbsp; &nbsp;Floor {{location.floor}} </ion-col>
+                  <ion-col col>Workplace nº{{location.workplace}}</ion-col>
+              </ion-row>
             </ion-grid>
         </ion-card-title>
       </ion-card>

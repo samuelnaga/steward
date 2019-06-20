@@ -12,6 +12,7 @@
 
 
 <ion-content padding>
+  <div class="ruta"><ion-icon name="pin" color="dark"></ion-icon> &nbsp; {{country.name}}</div>
 
   <ion-grid padding id="EntityName">
     <ion-row>
@@ -45,8 +46,14 @@
   </ion-list>
  
   <div class="addButton">
-    <button ion-button block color="gris" (click)="goToNewBuilding()" [disabled]="!savedName">
+    <button ion-button block color="verde" (click)="goToNewBuilding()" [disabled]="!savedName">
       Add new building
+    </button>
+  </div>
+
+  <div class="addButton">
+    <button ion-button block color="gris" >
+      Delete buildings
     </button>
   </div>
 

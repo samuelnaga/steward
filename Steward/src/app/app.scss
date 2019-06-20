@@ -15,6 +15,11 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+.ruta {
+    text-align: left;
+    margin-bottom: 3%;
+}
+
 ion-navbar {
     height: 50px;
 }
@@ -69,6 +74,10 @@ ion-navbar {
     }
 }
 
+.spacial {
+    margin-top: 2%;
+}
+
 .even {
     color: color($colors, gris, base);
 }
@@ -80,6 +89,7 @@ ion-navbar {
 .addButton {
     padding-left: 8%;
     padding-right: 8%;
+    margin-bottom: 2%;
 }
 
 #EntityName {

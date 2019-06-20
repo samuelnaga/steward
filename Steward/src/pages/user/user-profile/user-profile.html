@@ -35,28 +35,59 @@
     <h1 padding text-center> <strong>{{user.name}}</strong> </h1>
 
     <div text-center>
-      <ion-img src="assets/imgs/user.jpg"></ion-img>
+      <ion-img src="assets/imgs/user15.jpg"></ion-img>
     </div>
-
-    <ion-card-title>
+    
+    <br><br><br>
+    <div *ngIf="!fake; else noFake">
+      <ion-card-title *ngIf="location.created; else notcreated"><br>
         <ion-grid>
           <ion-row>
-            <ion-col col>&nbsp; &nbsp;<ion-icon name="pin"></ion-icon> &nbsp;{{location.country}}</ion-col>
-            <ion-col col>{{location.city}}</ion-col>
+            <ion-col col> <ion-icon name="pin"></ion-icon> {{location.country}} &nbsp; <ion-icon name="arrow-forward" color="dark"></ion-icon></ion-col>
+            <ion-col col>{{location.city}} &nbsp; <ion-icon name="arrow-forward" color="dark"></ion-icon></ion-col>
+            <ion-col col>{{location.building}}</ion-col>
           </ion-row>
           <br/>
-          <ion-row align-items-center>
+          <!-- <ion-row align-items-center>
             <ion-col ></ion-col>
             <ion-col > {{location.building}}</ion-col>
             <ion-col ></ion-col>
           </ion-row>
-          <br/>
+          <br/> -->
           <ion-row>
-              <ion-col col> &nbsp; &nbsp; Floor {{location.floor}}</ion-col>
-              <ion-col col>Workplace {{location.workplace}}</ion-col>
-            </ion-row>
+              <ion-col col> &nbsp; &nbsp;Floor {{location.floor}} </ion-col>
+              <ion-col col>Workplace nº{{location.workplace}}</ion-col>
+          </ion-row>
         </ion-grid>
-    </ion-card-title>
+      </ion-card-title>
+  </div>
+
+  <ng-template #noFake>
+      <ion-card-title *ngIf="location.created; else notcreated"><br>
+        <ion-grid>
+          <ion-row>
+            <ion-col col> <ion-icon name="pin"></ion-icon> Spain &nbsp; <ion-icon name="arrow-forward" color="dark"></ion-icon></ion-col>
+            <ion-col col>Alicante &nbsp; <ion-icon name="arrow-forward" color="dark"></ion-icon></ion-col>
+            <ion-col col>OscarEspl&aacute;</ion-col>
+          </ion-row>
+          <br/>
+          <!-- <ion-row align-items-center>
+            <ion-col ></ion-col>
+            <ion-col > {{location.building}}</ion-col>
+            <ion-col ></ion-col>
+          </ion-row>
+          <br/> -->
+          <ion-row>
+              <ion-col col> &nbsp; &nbsp;Floor 1 </ion-col>
+              <ion-col col>Workplace nº1</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+  </ng-template>
+
+    <ng-template #notcreated><br>
+      <h1 padding  class= "sincrear">Workplace is not registered yet</h1>
+    </ng-template>
   </ion-card>
 
   
@@ -66,7 +97,7 @@
     </button>
 
     <ng-template #normalMode>
-      <button ion-button block color="verde" >
+      <button ion-button block color="verde" (click)="scanner()">
         Add Workplace
       </button>
 

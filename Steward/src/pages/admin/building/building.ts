@@ -17,16 +17,20 @@ export class BuildingPage {
   private finalBuildingName: String;
   public newBuilding: Boolean;
   private building;
+  public city;
+  public country;
   public floors: Array<any>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private _buildP: BuildingProvider) {
-    this.newBuilding = this.navParams.data == "" ? true : false;
+    this.newBuilding = this.navParams.data.building == "" ? true : false;
     this.buildingNameEdit = this.newBuilding;
-    this.buildingName = this.newBuilding ?  "" : this.navParams.data.name;
+    this.buildingName = this.newBuilding ?  "" : this.navParams.data.building.name;
     this.savedName = this.newBuilding ? false : true;
     this.finalBuildingName = this.buildingName;
     this.floors = [];  
-    this.building = this.navParams.data;
+    this.building = this.navParams.data.building;
+    this.country = this.navParams.data.country;
+    this.city = this.navParams.data.city;
   }
 
   ionViewDidLoad() {
@@ -74,7 +78,10 @@ export class BuildingPage {
 
 
   newFloor() {
-    this.floors.push("Floor " + (this.floors.length + 1).toString());
+    let newf = {
+      number: this.floors.length + 1
+    }
+    this.floors.push(newf);
   }
 
 
@@ -84,7 +91,13 @@ export class BuildingPage {
 
 
   goToFloor(floor) {
-    this.navCtrl.push(FloorPage, floor);
+    let data = {
+      floor: floor,
+      building: this.building,
+      city: this.city,
+      country: this.country
+    };
+    this.navCtrl.push(FloorPage, data);
   }
 
   goToNewFloor() {
